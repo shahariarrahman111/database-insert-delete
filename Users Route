@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/about',function() {
+    return view('about');
+});
+
+Route::post('/about',
+[UserController::class,
+'userNew']);
+
+
+Route::get('/list',
+[UserController::class,
+'listUser']);
+
+Route::get('/delete/{id}',
+[UserController::class,
+'delete']);

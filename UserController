@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+
+class UserController extends Controller
+{
+    //
+    public function userNew(Request $request){
+         $user = new user();
+         $user->name=$request->name;
+         $user->email=$request->email;
+         $user->phone=$request->phone;
+         $user->save();
+      
+         return view('about');
+        
+    }
+
+    function listUser(){
+      $userData = User::all();
+      return view('user-list',['userdata'=>$userData]);
+    }
+
+
+    function delete($id)
+    {
+      $isDeleted=User::destroy($id);
+      if($isDeleted){
+         return redirect('list');
+      }
+    }
+}
